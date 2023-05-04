@@ -20,15 +20,17 @@ function contains(list, value) {
 }
 
 function get(target, field) {
-  const directGet = target[field];
+var result = void 0;
+  try {
+  var directGet = target[field];
   if (directGet !== undefined && directGet !== null) {
     return directGet;
   }
 
-  const pathArray = splitNested(field);
-  let result;
-  try {
-    result = pathArray.reduce((curr, path) => curr[path], target);
+  var pathArray = splitNested(field);
+    result = pathArray.reduce(function (curr, path) {
+      return curr[path];
+    }, target);
   } catch (e) {}
   return result;
 }
